@@ -12,16 +12,17 @@ public class GameManager : MonoBehaviour
     public bool isInBigMap = false;
     // Start is called before the first frame update
     private void Awake() {
-        enemies = new List<Enemy>();
-    }
-    void Start()
-    {
         DontDestroyOnLoad(gameObject);
         if(instance == null) {
             instance = this;
         } else {
             Destroy(gameObject);
         }
+        enemies = new List<Enemy>();
+    }
+    void Start()
+    {
+
 
 
     }
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator enemyTrun() {
         player.canMove = false;
+        yield return new WaitForSeconds(.5f);
         // 敌人行动
         foreach(var enemy in enemies) {
             yield return StartCoroutine(enemy.enemyMove());

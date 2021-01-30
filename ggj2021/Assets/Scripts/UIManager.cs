@@ -11,16 +11,18 @@ public class UIManager : MonoBehaviour
     public Text NameText;
     public Text TalkText;
     public TextAsset talkAsset;
-
-    // Start is called before the first frame update
-    void Start()
-    {
+    private void Awake() {
         DontDestroyOnLoad(gameObject);
         if(instance == null) {
             instance = this;
         } else {
             Destroy(gameObject);
         }
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
+
 
         // 控制对话框
         Dialog.gameObject.SetActive(false);

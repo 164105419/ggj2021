@@ -8,6 +8,7 @@ TagManager:
   - Jigsaw
   - JigsawChecker
   - Block
+  - Cell
   layers:
   - Default
   - TransparentFX

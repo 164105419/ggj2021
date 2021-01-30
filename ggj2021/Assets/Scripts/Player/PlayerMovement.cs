@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 public class PlayerMovement : MonoBehaviour
 {
+    public float playerPosOffsetY = -.5f;
     [Header("移动")]
     public float distance = 1f;
     public bool canMove = true;
@@ -19,17 +20,19 @@ public class PlayerMovement : MonoBehaviour
         if(canMove) {
             if(Input.GetButtonDown("Up")) {
                 transform.DOMoveY(distance, .5f).SetRelative();
-                StartCoroutine(walkCD());
+                // StartCoroutine(walkCD());
+                StartCoroutine(GameManager.instance.enemyTrun());
             } else if (Input.GetButtonDown("Down")) {
                 transform.DOMoveY(-distance, .5f).SetRelative();
-                StartCoroutine(walkCD());
+                StartCoroutine(GameManager.instance.enemyTrun());
             } else if (Input.GetButtonDown("Right")) {
                 transform.DOMoveX(distance, .5f).SetRelative();
-                StartCoroutine(walkCD());
+                StartCoroutine(GameManager.instance.enemyTrun());
             }else if (Input.GetButtonDown("Left")) {
                 transform.DOMoveX(-distance, .5f).SetRelative();
-                StartCoroutine(walkCD());
+                StartCoroutine(GameManager.instance.enemyTrun());
             }
+            
         }
     }
     IEnumerator walkCD() {
