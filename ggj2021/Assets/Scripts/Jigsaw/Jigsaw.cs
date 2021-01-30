@@ -18,6 +18,7 @@ public class Jigsaw : MonoBehaviour
         
     }
     private void OnMouseDrag() {
-        transform.position = new Vector3(Input.mousePosition.x, Input.mousePosition.y, transform.position.z);
+        Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
+        transform.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);
     }
 }
