@@ -9,6 +9,13 @@ public class Jigsaw : MonoBehaviour
 {
     // 目前所在的地点
     public MapPiece currMap;
+    public bool moveAble = true;
+    [Header("通行情况")]
+    public bool walkUp = true;
+    public bool walkDown = true;
+    public bool walkLeft = true;
+    public bool walkRight = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,9 +35,11 @@ public class Jigsaw : MonoBehaviour
         
     }
     private void OnMouseDrag() {
-        GameManager.instance.dragingJigsaw = this;
-        Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
-        transform.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);
+        if(moveAble){
+            GameManager.instance.dragingJigsaw = this;
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
+            transform.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);
+        }
     }
     /// <summary>
     /// 移动到目标位置
@@ -49,11 +58,17 @@ public class Jigsaw : MonoBehaviour
         Debug.Log("jigsaw enter");
     }
     private void OnMouseUp() {
+        if(!moveAble)
+            return;
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
         var hits = Physics2D.RaycastAll(new Vector2(mousePos.x, mousePos.y), Vector2.zero);
         foreach(var hit in hits) {
             if(hit.collider.tag == "JigsawChecker") {
                     var checker = hit.collider.GetComponent<JigsawChecker>();
+                    if(checker.map.currJigsaw != null && !checker.map.currJigsaw.moveAble) {
+                        changeJigsawPosition(currMap);
+                        break;
+                    }
                     if(checker.map.currJigsaw != this) {
                         if(checker.map.currJigsaw != null)
                             checker.map.currJigsaw.changeJigsawPosition(currMap);
