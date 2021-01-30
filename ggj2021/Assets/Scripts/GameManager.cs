@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public Jigsaw dragingJigsaw;
     public static GameManager instance;
     // 是否处于大地图下
     public bool isInBigMap = false;

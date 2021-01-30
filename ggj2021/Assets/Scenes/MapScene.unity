@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184da3f1fb8c89b479297dd68440680d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dragingJigsaw: {fileID: 0}
   isInBigMap: 0
 --- !u!4 &18281100
 Transform:
@@ -179,9 +180,9 @@ GameObject:
   - component: {fileID: 49587331}
   - component: {fileID: 49587330}
   - component: {fileID: 49587329}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Jigsaw (1)
-  m_TagString: Untagged
+  m_TagString: Jigsaw
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -194,7 +195,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 49587327}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20, y: 10, z: 0}
+  m_LocalPosition: {x: 20, y: 10, z: -1}
   m_LocalScale: {x: 9, y: 9, z: 1}
   m_Children: []
   m_Father: {fileID: 718391951}
@@ -238,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d09d1cb8190e924f8c34d3fc6aed694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currMap: {fileID: 0}
 --- !u!212 &49587331
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -363,9 +365,9 @@ GameObject:
   - component: {fileID: 326562651}
   - component: {fileID: 326562653}
   - component: {fileID: 326562652}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Jigsaw
-  m_TagString: Untagged
+  m_TagString: Jigsaw
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,7 +380,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326562649}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 9, y: 9, z: 1}
   m_Children: []
   m_Father: {fileID: 718391951}
@@ -473,6 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d09d1cb8190e924f8c34d3fc6aed694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currMap: {fileID: 0}
 --- !u!1001 &563353083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -955,9 +958,9 @@ GameObject:
   - component: {fileID: 1655348000}
   - component: {fileID: 1655347999}
   - component: {fileID: 1655347998}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Jigsaw (2)
-  m_TagString: Untagged
+  m_TagString: Jigsaw
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -970,7 +973,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1655347996}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10, y: 10, z: 0}
+  m_LocalPosition: {x: 10, y: 10, z: -1}
   m_LocalScale: {x: 9, y: 9, z: 1}
   m_Children: []
   m_Father: {fileID: 718391951}
@@ -1014,6 +1017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d09d1cb8190e924f8c34d3fc6aed694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currMap: {fileID: 0}
 --- !u!212 &1655348000
 SpriteRenderer:
   m_ObjectHideFlags: 0
