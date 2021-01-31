@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895433b7aef0bf343b646e236adfc94b, type: 3}
+  m_Name: Intro Dialogue
+  m_EditorClassIdentifier: 
+  NPCAvatar: {fileID: 2800000, guid: 024e1779658bb2d43a79cb7c694d94f7, type: 3}
+  DialogSlides:
+  - Yo Boy!
+  - You finally come! This place has been lost.
+  - You see those lil monsters? Try "W, A, S, D" to move around and disperse them.
+  - They have puzzles from different dimension useful to you but they won't drop
+    them unless you frighten them into the trap.
+  - Puzzles are the way to the truth in a mysterious dimension. Press "M" to access
+    that dimension.
+  - Find enough puzzles and get a way out of here, kid. Let's see how special you
+    are.
