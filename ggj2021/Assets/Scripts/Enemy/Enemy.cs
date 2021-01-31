@@ -33,21 +33,6 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-        
-        // yield return 0;
-        // bool findPlayer = false;
-        // bool findBlock = false;
-        // bool findCell = false;
-        // // 上
-        // var hitsUp = Physics2D.RaycastAll(new Vector2(transform.position.x, transform.position.y + cellLenth), Vector2.zero);
-        // var hitsDown = Physics2D.RaycastAll(new Vector2(transform.position.x, transform.position.y - cellLenth), Vector2.zero);
-        // var hitsLeft = Physics2D.RaycastAll(new Vector2(transform.position.x - cellLenth, transform.position.y), Vector2.zero);
-        // var hitsRight = Physics2D.RaycastAll(new Vector2(transform.position.x + cellLenth, transform.position.y), Vector2.zero);
-        // foreach(var hit in hitsUp) {
-        //     if(hit.collider.tag == "Player") {
-                
-        //     }
-        // }
     }
     public IEnumerator enemyWantMove(Vector2 dir) {
         var hits = Physics2D.RaycastAll(new Vector2(transform.position.x + dir.x, transform.position.y + dir.y + enemyPosOffsetY), Vector2.zero);
@@ -66,5 +51,8 @@ public class Enemy : MonoBehaviour
             transform.DOMove(dir, .5f).SetRelative();
             yield return new WaitForSeconds(.5f);
         }
+    }
+    public void Dead() {
+        Destroy(gameObject, .3f);
     }
 }

@@ -19,25 +19,41 @@ public class PlayerMovement : MonoBehaviour
     {
         if(canMove) {
             if(Input.GetButtonDown("Up")) {
-                transform.DOMoveY(distance, .5f).SetRelative();
-                // StartCoroutine(walkCD());
-                StartCoroutine(GameManager.instance.enemyTrun());
+                StartCoroutine(playerWantMove(new Vector2(0, 1)));
+                // transform.DOMoveY(distance, .5f).SetRelative();
+                // // StartCoroutine(walkCD());
+                // StartCoroutine(GameManager.instance.enemyTrun());
             } else if (Input.GetButtonDown("Down")) {
-                transform.DOMoveY(-distance, .5f).SetRelative();
-                StartCoroutine(GameManager.instance.enemyTrun());
+                StartCoroutine(playerWantMove(new Vector2(0, -1)));
             } else if (Input.GetButtonDown("Right")) {
-                transform.DOMoveX(distance, .5f).SetRelative();
-                StartCoroutine(GameManager.instance.enemyTrun());
+                StartCoroutine(playerWantMove(new Vector2(1, 0)));
             }else if (Input.GetButtonDown("Left")) {
-                transform.DOMoveX(-distance, .5f).SetRelative();
-                StartCoroutine(GameManager.instance.enemyTrun());
+                StartCoroutine(playerWantMove(new Vector2(-1, 0)));
             }
-            
         }
     }
     IEnumerator walkCD() {
         canMove = false;
         yield return new WaitForSeconds(.5f);
         canMove = true;
+    }
+    public IEnumerator playerWantMove(Vector2 dir) {
+        var hits = Physics2D.RaycastAll(new Vector2(transform.position.x + dir.x, transform.position.y + dir.y + playerPosOffsetY), Vector2.zero);
+        bool hasCell = false;
+        foreach(var hit in hits) {
+            if(hit.collider.tag == "Block" || hit.collider.tag == "Enemy" || hit.collider.tag == "DeadZone") {
+                yield break;
+            } else if (hit.collider.tag == "Cell") {
+                hasCell = true;
+            }
+            // else if(hit == hits[hits.Length- 1 ]) {
+
+            // }
+        }
+        if(hasCell) {
+            transform.DOMove(dir, .5f).SetRelative();
+            StartCoroutine(GameManager.instance.enemyTrun());
+            // yield return new WaitForSeconds(.5f);
+        }
     }
 }

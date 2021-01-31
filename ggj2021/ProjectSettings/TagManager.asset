@@ -9,6 +9,8 @@ TagManager:
   - JigsawChecker
   - Block
   - Cell
+  - Enemy
+  - DeadZone
   layers:
   - Default
   - TransparentFX
