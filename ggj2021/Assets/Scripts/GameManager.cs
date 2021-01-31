@@ -34,6 +34,14 @@ public class GameManager : MonoBehaviour
         if(Input.GetButtonDown("Refresh")) {
             currLevel.LevelRefresh();
         }
+        if(Input.GetKeyDown(KeyCode.M)) {
+            if(isInBigMap) {
+                CameraManager.instance.toLevel(currLevel);
+
+            }else {
+                CameraManager.instance.toBigMap();
+            }
+        }
     }
 
     // 交换两个拼图
@@ -60,9 +68,11 @@ public class GameManager : MonoBehaviour
         myTrun();
     }
     public void changeLevel(LevelManager level) {
-        currLevel.GetComponent<Jigsaw>().moveAble = true;
+        if(currLevel != null)
+            currLevel.GetComponent<Jigsaw>().moveAble = true;
         currLevel = level;
         currLevel.GetComponent<Jigsaw>().moveAble = false;
+        CameraManager.instance.toLevel(level);
     }
     public void checkLevel() {
         var hits = Physics2D.RaycastAll(new Vector2(player.transform.position.x, player.transform.position.y), Vector2.zero);

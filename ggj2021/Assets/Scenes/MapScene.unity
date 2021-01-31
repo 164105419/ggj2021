@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 184da3f1fb8c89b479297dd68440680d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currLevel: {fileID: 0}
   player: {fileID: 1907372455}
   dragingJigsaw: {fileID: 0}
   enemies: []
@@ -445,9 +446,17 @@ MonoBehaviour:
   currMap: {fileID: 0}
   moveAble: 1
   walkUp: 1
+  UpZone: {fileID: 0}
   walkDown: 1
+  DownZone: {fileID: 0}
   walkLeft: 1
+  LeftZone: {fileID: 0}
   walkRight: 1
+  RightZone: {fileID: 0}
+  upPass: {fileID: 0}
+  downPass: {fileID: 0}
+  leftPass: {fileID: 0}
+  RightPass: {fileID: 0}
 --- !u!1001 &333322050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1099,6 +1108,7 @@ GameObject:
   - component: {fileID: 1263648370}
   - component: {fileID: 1263648369}
   - component: {fileID: 1263648368}
+  - component: {fileID: 1263648371}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1171,6 +1181,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1263648371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263648367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0478e4712620dcc4283cfb2110e3c0eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  smallSize: 7
+  bigSize: 22.5
+  midTran: {fileID: 563353084}
 --- !u!1 &1335903453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1550,9 +1575,17 @@ MonoBehaviour:
   currMap: {fileID: 0}
   moveAble: 1
   walkUp: 1
+  UpZone: {fileID: 0}
   walkDown: 1
+  DownZone: {fileID: 0}
   walkLeft: 1
+  LeftZone: {fileID: 0}
   walkRight: 1
+  RightZone: {fileID: 0}
+  upPass: {fileID: 0}
+  downPass: {fileID: 0}
+  leftPass: {fileID: 0}
+  RightPass: {fileID: 0}
 --- !u!212 &1655348000
 SpriteRenderer:
   m_ObjectHideFlags: 0
