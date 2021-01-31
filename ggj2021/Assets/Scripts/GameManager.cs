@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public LevelManager currLevel;
     public PlayerMovement player;
     public Jigsaw dragingJigsaw;
     public static GameManager instance;
@@ -30,7 +31,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetButtonDown("Refresh")) {
+            currLevel.LevelRefresh();
+        }
+        if(Input.GetKeyDown(KeyCode.M)) {
+            if(isInBigMap) {
+                CameraManager.instance.toLevel(currLevel);
+
+            }else {
+                CameraManager.instance.toBigMap();
+            }
+        }
     }
 
     // 交换两个拼图
@@ -48,9 +59,27 @@ public class GameManager : MonoBehaviour
         player.canMove = false;
         yield return new WaitForSeconds(.5f);
         // 敌人行动
-        foreach(var enemy in enemies) {
-            yield return StartCoroutine(enemy.enemyMove());
+        for(int i = enemies.Count - 1 ; i >= 0 ; --i) {
+            yield return StartCoroutine(enemies[i].enemyMove());
         }
+        // foreach(var enemy in enemies) {
+        //     yield return StartCoroutine(enemy.enemyMove());
+        // }
         myTrun();
+    }
+    public void changeLevel(LevelManager level) {
+        if(currLevel != null)
+            currLevel.GetComponent<Jigsaw>().moveAble = true;
+        currLevel = level;
+        currLevel.GetComponent<Jigsaw>().moveAble = false;
+        CameraManager.instance.toLevel(level);
+    }
+    public void checkLevel() {
+        var hits = Physics2D.RaycastAll(new Vector2(player.transform.position.x, player.transform.position.y + player.playerPosOffsetY), Vector2.zero);
+        foreach(var hit in hits) {
+            if(hit.collider.tag == "PieceGroup") {
+                changeLevel(hit.collider.GetComponent<LevelManager>());
+            }
+        }
     }
 }

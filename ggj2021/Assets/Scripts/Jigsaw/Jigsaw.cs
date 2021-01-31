@@ -12,9 +12,18 @@ public class Jigsaw : MonoBehaviour
     public bool moveAble = true;
     [Header("通行情况")]
     public bool walkUp = true;
+    public GameObject UpZone;
     public bool walkDown = true;
+    public GameObject DownZone;
     public bool walkLeft = true;
+    public GameObject LeftZone;
     public bool walkRight = true;
+    public GameObject RightZone;
+    public PassZone upPass;
+    public PassZone downPass;
+    public PassZone leftPass;
+    public PassZone RightPass;
+
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +44,7 @@ public class Jigsaw : MonoBehaviour
         
     }
     private void OnMouseDrag() {
-        if(moveAble){
+        if(moveAble && GameManager.instance.isInBigMap){
             GameManager.instance.dragingJigsaw = this;
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
             transform.position = new Vector3(mousePos.x, mousePos.y, transform.position.z);

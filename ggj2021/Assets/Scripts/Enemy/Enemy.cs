@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     {
 
         GameManager.instance.enemies.Add(this);
+        var level = GetComponentInParent<LevelManager>();
+        level.registEnemy(this);
     }
 
     // Update is called once per frame
@@ -33,27 +35,12 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-        
-        // yield return 0;
-        // bool findPlayer = false;
-        // bool findBlock = false;
-        // bool findCell = false;
-        // // 上
-        // var hitsUp = Physics2D.RaycastAll(new Vector2(transform.position.x, transform.position.y + cellLenth), Vector2.zero);
-        // var hitsDown = Physics2D.RaycastAll(new Vector2(transform.position.x, transform.position.y - cellLenth), Vector2.zero);
-        // var hitsLeft = Physics2D.RaycastAll(new Vector2(transform.position.x - cellLenth, transform.position.y), Vector2.zero);
-        // var hitsRight = Physics2D.RaycastAll(new Vector2(transform.position.x + cellLenth, transform.position.y), Vector2.zero);
-        // foreach(var hit in hitsUp) {
-        //     if(hit.collider.tag == "Player") {
-                
-        //     }
-        // }
     }
     public IEnumerator enemyWantMove(Vector2 dir) {
         var hits = Physics2D.RaycastAll(new Vector2(transform.position.x + dir.x, transform.position.y + dir.y + enemyPosOffsetY), Vector2.zero);
         bool hasCell = false;
         foreach(var hit in hits) {
-            if(hit.collider.tag == "Block" || hit.collider.tag == "Player" ) {
+            if(hit.collider.tag == "Block" || hit.collider.tag == "Player" || hit.collider.tag == "Enemy") {
                 yield break;
             } else if (hit.collider.tag == "Cell") {
                 hasCell = true;
@@ -65,6 +52,20 @@ public class Enemy : MonoBehaviour
         if(hasCell) {
             transform.DOMove(dir, .5f).SetRelative();
             yield return new WaitForSeconds(.5f);
+            checkDead();
+        }
+    }
+    public void Dead() {
+        GameManager.instance.enemies.Remove(this);
+        transform.position = new Vector3(999, 999, 0);
+        // Destroy(gameObject, .15f);
+    }
+    public void checkDead() {
+        var hits = Physics2D.RaycastAll(new Vector2(transform.position.x, transform.position.y + enemyPosOffsetY), Vector2.zero);
+        foreach(var hit in hits) {
+            if(hit.collider.tag == "DeadZone") {
+                Dead();
+            }
         }
     }
 }

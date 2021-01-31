@@ -9,6 +9,12 @@ TagManager:
   - JigsawChecker
   - Block
   - Cell
+  - Enemy
+<<<<<<< Updated upstream
+  - DeadZone
+  - PieceGroup
+=======
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
