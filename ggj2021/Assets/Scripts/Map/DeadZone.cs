@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class DeadZone : MonoBehaviour
 {
-
     // Start is called before the first frame update
     void Start()
     {
@@ -16,16 +15,8 @@ public class DeadZone : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter2D(Collider2D other) {
-        var enemy = other.GetComponent<Enemy>();
-        if(enemy != null) {
-            enemy.Dead();
-        }
-        // if(other.collider.tag == "Enemy") {
-        //     other.collider.GetComponent<Enemy>().Dead();
-        // }
-    }
-    private void OnCollisionEnter2D(Collision2D other) {
+    private void OnCollisionStay2D(Collision2D other) {
+        Debug.Log("dead enter");
         if(other.collider.tag == "Enemy") {
             other.collider.GetComponent<Enemy>().Dead();
         }
