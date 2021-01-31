@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         CameraManager.instance.toLevel(level);
     }
     public void checkLevel() {
-        var hits = Physics2D.RaycastAll(new Vector2(player.transform.position.x, player.transform.position.y), Vector2.zero);
+        var hits = Physics2D.RaycastAll(new Vector2(player.transform.position.x, player.transform.position.y + player.playerPosOffsetY), Vector2.zero);
         foreach(var hit in hits) {
             if(hit.collider.tag == "PieceGroup") {
                 changeLevel(hit.collider.GetComponent<LevelManager>());
